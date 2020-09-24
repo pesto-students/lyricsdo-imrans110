@@ -1,0 +1,149 @@
+* {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+html * {
+  font-family: "Nunito", "Lato", "HelveticaNeue-Light", "Helvetica Neue Light",
+    "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+html,
+body {
+  font-family: "Nunito", "Lato", "HelveticaNeue-Light", "Helvetica Neue Light",
+    "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.header-section {
+  background: url(./assets/hero.jpg) no-repeat center center;
+  height: 340px;
+  background-size: cover;
+  opacity: 0.9;
+  background-repeat: no-repeat;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  outline: none;
+  color: #ffffff;
+  background-color: rgba(239, 170, 196, 0.9);
+  cursor: pointer;
+  border: 1px solid rgba(239, 170, 196, 0.9);
+}
+
+.button:hover {
+  background-color: rgba(239, 170, 196, 1);
+  border: 1px solid rgba(239, 170, 196, 1);
+}
+
+.header {
+  margin: 0;
+  color: #3993dd;
+}
+
+.header-container {
+  text-align: center;
+  margin-right: 50px;
+}
+
+.header-input {
+  padding: 10px;
+  width: 300px;
+  outline: none;
+}
+
+.search-button {
+  padding: 5px 10px;
+  font-size: 18px;
+  max-width: 100px;
+  margin: 0 auto;
+}
+/* 768 mediaquery */
+.search-bar {
+  align-items: center;
+  display: flex;
+  text-align: center;
+}
+
+.search-bar > * {
+  margin-right: 2px;
+}
+
+@media only screen and (max-width: 768px) {
+  .search-bar {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .search-bar > * {
+    margin: 0 auto;
+    margin-bottom: 5px;
+  }
+}
+
+.card {
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 500px;
+  padding: 10px;
+  margin: 10px auto;
+}
+
+.card:hover {
+  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+.list-container {
+  text-align: center;
+}
+
+.show-button {
+  padding: 5px 10px;
+  font-size: 18px;
+}
+
+.card > div {
+  color: #3993dd;
+  width: 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+  align-items: center;
+  justify-content: space-between;
+  width: 500px;
+  padding: 10px;
+  margin: 10px auto;
+  white-space: pre-line;
+  font-size: 25px;
+}
+
+.d-none {
+  display: none;
+}

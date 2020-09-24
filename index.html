@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LyricsMate</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      href="./assets/favicon.ico"
+      type="image/ico"
+      sizes="16x16"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div>
+      <div class="header-section">
+        <div class="header-container">
+          <h1 class="header">LyricsMate</h1>
+          <div class="search-bar">
+            <input class="header-input" id="search-input" type="text" />
+            <button
+              onclick="onSearchButtonClick()"
+              type="button"
+              class="search-button button"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="list-container">
+        <ul id="list-items">
+          <li>No data yet</li>
+        </ul>
+      </div>
+    </div>
+    <script src="scripts.js"></script>
+  </body>
+</html>
