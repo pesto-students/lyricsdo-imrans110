@@ -129,3 +129,17 @@ ul {
   text-overflow: ellipsis;
   text-align: left;
 }
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+  align-items: center;
+  justify-content: space-between;
+  width: 500px;
+  padding: 10px;
+  margin: 10px auto;
+  white-space: pre-line;
+  font-size: 25px;
+}
