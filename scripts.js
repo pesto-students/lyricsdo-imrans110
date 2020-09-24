@@ -2,7 +2,10 @@ const API_BASE_URL =
   "https://private-anon-5e7186017e-lyricsovh.apiary-proxy.com/v1/";
 const API_SUGGESTION_URL = "https://api.lyrics.ovh/suggest/";
 
-let activeAccordianID = "";
+const getElByID = (id) => document.getElementById(id);
+const getValueById = (id) => getElByID(id).value;
+
+let activeLineID = "";
 
 const createCard = (item) => {
   return `<li id='line_${item.id}'>
@@ -14,12 +17,26 @@ const createCard = (item) => {
               <button id='show_btn_${item.id}' class="show-button button" onclick="handleAccordian('${item.id}', '${item.artist.name}', '${item.title}')" type="button">
                 Show Lyrics
               </button>
+              <button id='hide_btn_${item.id}' class="show-button button d-none" onclick="hideLyrics('${item.id}')" type="button">
+              Hide Lyrics
+            </button>
             </div>
             <div class='panel' id='panel_${item.id}' /> 
           </li>`;
 };
 
-const getValueById = (id) => document.getElementById(id).value;
+const hideLyrics = (lineID) => {
+  const showButton = getElByID(`show_btn_${lineID}`);
+  const hideButton = getElByID(`hide_btn_${lineID}`);
+  const panelItem = getElByID(`panel_${lineID}`);
+
+  showButton && showButton.classList.remove("d-none");
+  hideButton && hideButton.classList.add("d-none");
+  if (panelItem) {
+    panelItem.style.display = "none";
+    panelItem.innerHTML = "";
+  }
+};
 
 const onSearchButtonClick = () => {
   const searchInputValue = getValueById("search-input");
@@ -29,9 +46,9 @@ const onSearchButtonClick = () => {
         return res.json();
       })
       .then((data) => {
-        document.getElementById("list-items").innerHTML = null;
+        getElByID("list-items").innerHTML = null;
         data.data.forEach((item) => {
-          document.getElementById("list-items").innerHTML += createCard(item);
+          getElByID("list-items").innerHTML += createCard(item);
         });
       });
   }
@@ -42,7 +59,6 @@ const getLyrics = (lineID, artistName, trackName) =>
     fetch(API_BASE_URL + "/" + artistName + "/" + trackName)
       .then((res) => res.json())
       .then((data) => {
-        console.log({ data });
         resolve(data);
       })
       .catch((e) => {
@@ -53,25 +69,22 @@ const getLyrics = (lineID, artistName, trackName) =>
 
 const handleAccordian = async (lineID, artistName, trackName) => {
   const songLyrics = await getLyrics(lineID, artistName, trackName);
-  const lineItem = document.getElementById(lineID);
-  const panelItem = document.getElementById(`panel_${lineID}`);
-  const currentActiveAccordian = document.getElementById(activeAccordianID);
-  const showButton = document.getElementById(`show_button_${lineID}`);
+  const lineItem = getElByID(lineID);
+  const panelItem = getElByID(`panel_${lineID}`);
+  const currentActiveAccordian = getElByID("panel_" + activeLineID);
+  const showButton = getElByID(`show_btn_${lineID}`);
+  const hideButton = getElByID(`hide_btn_${lineID}`);
 
-  // showButton.innerHTML = "Hide Lyrics";
-  // showButton.onclick = function () {
-  //   showButton.innerHTML = "Show Lyrics";
-  //   // panelItem.style.display = "none";
-  //   showButton.onclick = handleAccordian(
-  //     `${lineID}`,
-  //     `${artist}`,
-  //     `${trackName}`
-  //   );
-  // };
+  hideButton.classList.remove("d-none");
+  showButton.classList.add("d-none");
 
   if (currentActiveAccordian) {
     currentActiveAccordian.style.display = "none";
     currentActiveAccordian.innerHTML = "";
+  }
+
+  if (activeLineID) {
+    hideLyrics(activeLineID);
   }
 
   if (songLyrics.lyrics) {
@@ -81,5 +94,5 @@ const handleAccordian = async (lineID, artistName, trackName) => {
     panelItem.style.display = "block";
     panelItem.innerHTML = "No Lyrics Available";
   }
-  activeAccordianID = `panel_${lineID}`;
+  activeLineID = `${lineID}`;
 };

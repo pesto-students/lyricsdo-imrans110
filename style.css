@@ -143,3 +143,7 @@ ul {
   white-space: pre-line;
   font-size: 25px;
 }
+
+.d-none {
+  display: none;
+}
